@@ -27,10 +27,10 @@ var Counter = function (_React$Component) {
     _createClass(Counter, [{
         key: 'handleIncrement',
         value: function handleIncrement() {
-            var _this2 = this;
-
             this.setState(function (prevState) {
-                return { count: _this2.state.count + 1 };
+                return {
+                    count: prevState.count + 1
+                };
             });
         }
     }, {
