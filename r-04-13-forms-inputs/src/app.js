@@ -23,6 +23,11 @@ class IndecisionApp extends React.Component {
         alert('You should do ' + this.state.options[optionIdx]);
     }
     handleAddOption(newOption) {
+        if (!newOption) {
+            return 'Please type something first.'
+        } else if (this.state.options.indexOf(newOption) > -1) {
+            return 'Item already exists.'
+        }
         this.setState(prevState => ({options: [...prevState.options, newOption]}));
     }
     render() {
@@ -98,19 +103,20 @@ class AddOption extends React.Component {
     constructor(props) {
         super(props);
         this.handleFormInput = this.handleFormInput.bind(this);
+        this.state = {
+            error: undefined
+        };
     }
     handleFormInput(e) {
         e.preventDefault();
         const newOption = e.target.elements.newOption.value.trim();
-        if (newOption) {
-            this.props.handleAddOption(newOption);
-        } else {
-            alert('Please type something first.');
-        }
+        const error = this.props.handleAddOption(newOption);
+        this.setState(() => ({error}))
     }
     render() {
         return (
             <form name="newOption" onSubmit={this.handleFormInput}>
+                {this.state.error && <p>{this.state.error}</p>}
                 <label htmlFor="newOption">Enter A New Option Here</label>
                 <br></br>
                 <input type="text" id="newOption" placeholder="your new option"></input>

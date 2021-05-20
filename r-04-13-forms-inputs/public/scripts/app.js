@@ -48,6 +48,11 @@ var IndecisionApp = function (_React$Component) {
     }, {
         key: 'handleAddOption',
         value: function handleAddOption(newOption) {
+            if (!newOption) {
+                return 'Please type something first.';
+            } else if (this.state.options.indexOf(newOption) > -1) {
+                return 'Item already exists.';
+            }
             this.setState(function (prevState) {
                 return { options: [].concat(_toConsumableArray(prevState.options), [newOption]) };
             });
@@ -211,6 +216,9 @@ var AddOption = function (_React$Component6) {
         var _this6 = _possibleConstructorReturn(this, (AddOption.__proto__ || Object.getPrototypeOf(AddOption)).call(this, props));
 
         _this6.handleFormInput = _this6.handleFormInput.bind(_this6);
+        _this6.state = {
+            error: undefined
+        };
         return _this6;
     }
 
@@ -219,11 +227,10 @@ var AddOption = function (_React$Component6) {
         value: function handleFormInput(e) {
             e.preventDefault();
             var newOption = e.target.elements.newOption.value.trim();
-            if (newOption) {
-                this.props.handleAddOption(newOption);
-            } else {
-                alert('Please type something first.');
-            }
+            var error = this.props.handleAddOption(newOption);
+            this.setState(function () {
+                return { error: error };
+            });
         }
     }, {
         key: 'render',
@@ -231,6 +238,11 @@ var AddOption = function (_React$Component6) {
             return React.createElement(
                 'form',
                 { name: 'newOption', onSubmit: this.handleFormInput },
+                this.state.error && React.createElement(
+                    'p',
+                    null,
+                    this.state.error
+                ),
                 React.createElement(
                     'label',
                     { htmlFor: 'newOption' },
