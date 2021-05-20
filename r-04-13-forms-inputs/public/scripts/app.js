@@ -30,7 +30,7 @@ var IndecisionApp = function (_React$Component) {
                 React.createElement(Header, { title: title, subtitle: subtitle }),
                 React.createElement(Action, null),
                 React.createElement(Options, { options: options }),
-                React.createElement(AddOption, null)
+                React.createElement(AddOption, { options: options })
             );
         }
     }]);
@@ -120,8 +120,8 @@ var Options = function (_React$Component4) {
         key: 'render',
         value: function render() {
             return React.createElement(
-                'div',
-                null,
+                'form',
+                { id: 'options' },
                 React.createElement(
                     'button',
                     { onClick: this.handleRemoveAll },
@@ -179,11 +179,24 @@ var AddOption = function (_React$Component6) {
     }
 
     _createClass(AddOption, [{
+        key: 'onSubmit',
+        value: function onSubmit(e) {
+            e.preventDefault();
+            if (e.target.elements.newOption.value) alert('You chose ' + e.target.elements.newOption.value);
+        }
+    }, {
         key: 'render',
         value: function render() {
             return React.createElement(
-                'div',
-                null,
+                'form',
+                { name: 'newOption', onSubmit: this.onSubmit },
+                React.createElement(
+                    'label',
+                    { htmlFor: 'newOption' },
+                    'Enter A New Option Here'
+                ),
+                React.createElement('br', null),
+                React.createElement('input', { type: 'text', id: 'newOption', placeholder: 'your new option' }),
                 React.createElement(
                     'button',
                     null,
