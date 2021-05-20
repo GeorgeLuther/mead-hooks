@@ -36,7 +36,9 @@ var Counter = function (_React$Component) {
     }, {
         key: 'handleDecrement',
         value: function handleDecrement() {
-            this.setState({ count: this.state.count - 1 });
+            this.setState(function (state) {
+                return { count: state.count - 1 };
+            });
         }
     }, {
         key: 'handleReset',
