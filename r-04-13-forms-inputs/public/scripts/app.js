@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 var isShown = false;
 
@@ -10,26 +10,26 @@ var onShowDetails = function onShowDetails() {
 var appRoot = document.getElementById('app');
 
 var render = function render() {
-    var template = React.createElement(
-        "div",
+    var jsx = React.createElement(
+        'div',
         null,
         React.createElement(
-            "h1",
+            'h1',
             null,
-            "Visibility Toggle"
+            'Visibility Toggle'
         ),
         React.createElement(
-            "button",
+            'button',
             { onClick: onShowDetails },
-            "Show details"
+            isShown ? 'Hide details' : 'Show details'
         ),
         isShown && React.createElement(
-            "p",
-            { className: "details" },
-            "I am the details!!"
+            'p',
+            { className: 'details' },
+            'I am the details!!'
         )
     );
-    ReactDOM.render(template, appRoot);
+    ReactDOM.render(jsx, appRoot);
 };
 
 render();

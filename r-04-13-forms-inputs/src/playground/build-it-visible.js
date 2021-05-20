@@ -8,14 +8,14 @@ const onShowDetails=()=>{
 const appRoot = document.getElementById('app');
 
 const render=()=>{
-    const template = (
+    const jsx = (
         <div>
             <h1>Visibility Toggle</h1>
-            <button onClick={onShowDetails}>Show details</button>
+            <button onClick={onShowDetails}>{isShown ? 'Hide details' : 'Show details'}</button>
             {isShown && <p className="details">I am the details!!</p>}
         </div>
     )
-    ReactDOM.render(template, appRoot)
+    ReactDOM.render(jsx, appRoot)
 }
 
 render();
