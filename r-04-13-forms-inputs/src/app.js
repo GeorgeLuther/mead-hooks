@@ -1,3 +1,10 @@
+const obj = {
+    name: 'Jimbo',
+    getName() {
+        return this.name;
+    }
+};
+
 
 class IndecisionApp extends React.Component {
     render() {
@@ -42,8 +49,14 @@ class Action extends React.Component {
 
 
 class Options extends React.Component {
-    handleRemoveAll() {
-        alert('Handled remove all')
+    constructor(props) {
+        super(props);
+        this.handleRemoveAll = this.handleRemoveAll.bind(this);
+    }
+    handleRemoveAll(e) {
+        e.preventDefault()
+        console.log(this.props.options)
+        
     }
     render() {
         return (
@@ -68,13 +81,16 @@ class Option extends React.Component {
     }
 }
 class AddOption extends React.Component {
-    onSubmit(e) {
+    handleAddOption(e) {
         e.preventDefault();
-        if (e.target.elements.newOption.value) alert(`You chose ${e.target.elements.newOption.value}`);
+        const newOption = e.target.elements.newOption.value
+        if (newOption) alert(`You chose ${e.target.elements.newOption.value}`);
+        this.props.options.push(newOption)
+        console.log(this.props.options)
     }
     render() {
         return (
-            <form name="newOption" onSubmit={this.onSubmit}>
+            <form name="newOption" onSubmit={this.handleAddOption.bind(this)}>
                 <label htmlFor="newOption">Enter A New Option Here</label>
                 <br></br>
                 <input type="text" id="newOption" placeholder="your new option"></input>
