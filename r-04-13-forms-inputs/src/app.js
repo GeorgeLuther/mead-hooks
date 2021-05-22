@@ -51,54 +51,46 @@ class IndecisionApp extends React.Component {
     }
 }
 
-class Header extends React.Component {
-    render() {
-        return (
-            <header>
-                <h1>{this.props.title}</h1>
-                <h2>{this.props.subtitle}</h2>
-            </header>
-        )
-    }
-}
+const Header = (props) => {
+    return (
+        <header>
+            <h1>{props.title}</h1>
+            <h2>{props.subtitle}</h2>
+        </header>
+    );
+};
 
-class Action extends React.Component {
-    render() {
-        return (
-            <div>
-                <button 
-                    onClick={this.props.handlePick} 
-                    disabled = {!this.props.hasOptions}
-                >
-                    What should I do?</button>
-            </div>
-        )
-    }
-}
+const Action = (props)=> {
+    return (
+        <div>
+            <button 
+                onClick={props.handlePick} 
+                disabled = {!props.hasOptions}
+            >
+                What should I do?</button>
+        </div>
+    );
+};
 
-class Options extends React.Component {
-    render() {
-        return (
-            <div id="options">
-                <button onClick={this.props.handleClearOptions}>Remove All</button>
-                <p>You have {this.props.options.length} option(s).</p>
-                {
-                  this.props.options && this.props.options.map(option => <Option key={option} info={option} />)
-                }
-            </div>
-        )
-    }
-}
+const Options = (props) => {
+    return (
+        <div id="options">
+            <button onClick={props.handleClearOptions}>Remove All</button>
+            <p>You have {props.options.length} option(s).</p>
+            {
+                props.options && props.options.map(option => <Option key={option} info={option} />)
+            }
+        </div>
+    );
+};
 
-class Option extends React.Component {
-    render() {
-        return (
-            <label htmlFor={this.props.info}> {this.props.info}
-                <input name="options" id={this.props.info} type="radio"></input>
-            </label>
-        )
-    }
-}
+const Option = (props) => {
+    return (
+        <label htmlFor={props.info}> {props.info}
+            <input name="options" id={props.info} type="radio"></input>
+        </label>
+    );
+};
 class AddOption extends React.Component {
     constructor(props) {
         super(props);
@@ -126,5 +118,13 @@ class AddOption extends React.Component {
     }
 }
 
+const User = (props) => {
+    return (
+        <div>
+            <p>Name: {props.name}</p>
+            <p>Age: {props.age}</p>
+        </div>
+    )
+}
 
 ReactDOM.render(<IndecisionApp />, document.getElementById('app'));
