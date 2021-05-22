@@ -4,7 +4,7 @@ class Counter extends React.Component {
         this.handleIncrement = this.handleIncrement.bind(this);
         this.handleDecrement = this.handleDecrement.bind(this);
         this.handleReset = this.handleReset.bind(this);
-        this.state = {count: 0};
+        this.state = {count: props.count};
         
     }
     handleIncrement(){
@@ -15,10 +15,14 @@ class Counter extends React.Component {
         });
     }
     handleDecrement(){
-        this.setState(state => ({count: state.count-1}));
+        this.setState((prevState) =>  {
+            return {
+                count: prevState.count-1
+            };
+        });
     }
     handleReset(){
-        this.setState({count: 0})
+        this.setState({count: this.props.count})
     }
     render() {
         document.title = `Your count is ${this.state.count}`
@@ -32,6 +36,9 @@ class Counter extends React.Component {
         );
     }
 }
+Counter.defaultProps = {
+    count: 0
+};
 
-ReactDOM.render(<Counter />,  document.getElementById('app'));
+ReactDOM.render(<Counter count = {2} />,  document.getElementById('app'));
 
