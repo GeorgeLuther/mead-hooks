@@ -5,16 +5,19 @@ class IndecisionApp extends React.Component {
             options: props.options,
         };
         this.handleClearOptions = this.handleClearOptions.bind(this);
+        this.handleDeleteOption = this.handleDeleteOption.bind(this);
         this.handlePick = this.handlePick.bind(this);
         this.handleAddOption = this.handleAddOption.bind(this);
     }
     handleClearOptions() {
-        //e.preventDefault();
-        this.setState(() => {
-            return {
-                options: []
-            };
-        });
+        this.setState(() => ({ options: [] }));
+    }
+    handleDeleteOption(optionToRemove) {
+        this.setState((prevState) => ({
+            options: prevState.options.filter((option) => {
+                return optionToRemove !== option;
+            })
+        }));
     }
     handlePick() {
         const optionIdx = Math.floor(Math.random() * this.state.options.length);
@@ -40,6 +43,7 @@ class IndecisionApp extends React.Component {
                 <Options 
                     options={this.state.options} 
                     handleClearOptions={this.handleClearOptions}
+                    handleDeleteOption = {this.handleDeleteOption}
                 />
                 <AddOption 
                     options={this.state.options} 
@@ -85,16 +89,23 @@ const Options = (props) => {
             <button onClick={props.handleClearOptions}>Remove All</button>
             <p>You have {props.options.length} option(s).</p>
             {
-                props.options && props.options.map(option => <Option key={option} info={option} />)
+                props.options && props.options.map(option => <Option key={option} info={option} handleDeleteOption={props.handleDeleteOption}/>)
             }
         </div>
     );
 };
 
 const Option = (props) => {
+    const handleDelete = () => props.handleDeleteOption(props.info)
     return (
         <label htmlFor={props.info}> {props.info}
             <input name="options" id={props.info} type="radio"></input>
+            <button 
+                name={props.info} 
+                onClick={handleDelete}
+            >
+                Remove
+            </button>
         </label>
     );
 };
