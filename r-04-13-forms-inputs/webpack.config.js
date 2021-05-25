@@ -6,7 +6,6 @@ module.exports = {
         path: path.join(__dirname, 'public'),
         filename: 'bundle.js'
     },
-    mode: 'development',
     module: {
         rules: [{
             loader: 'babel-loader',
@@ -14,7 +13,7 @@ module.exports = {
             exclude: /node_modules/
         }]
     },
-    devtool: 'eval-cheap-module-source-map',
+    devtool: 'cheap-module-eval-source-map',
     devServer: {
         contentBase: path.join(__dirname, 'public'),
     }
