@@ -1,7 +1,7 @@
 import React from 'react'
 import Option from './Option'
 
-export default (props) => {
+export default function Options(props) {
     return (
         <div id="options">
             <button onClick={props.handleClearOptions}>Remove All</button>

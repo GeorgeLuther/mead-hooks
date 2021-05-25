@@ -1,6 +1,6 @@
 import React from 'react'
 
-class AddOption extends React.Component {
+export default class AddOption extends React.Component {
     constructor(props) {
         super(props);
         this.handleFormInput = this.handleFormInput.bind(this);
@@ -30,5 +30,3 @@ class AddOption extends React.Component {
         )
     }
 }
-
-export default AddOption
