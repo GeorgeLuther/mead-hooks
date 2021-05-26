@@ -20,7 +20,7 @@ export default class AddOption extends React.Component {
                 <label htmlFor="newOption">Enter A New Option Here</label>
                 <br></br>
                 <input type="text" id="newOption" placeholder="your new option"></input>
-                <button>Add an option.</button>   
+                <button className="button">Add an option.</button>   
             </form>
         );
     }

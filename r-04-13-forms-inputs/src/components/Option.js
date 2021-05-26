@@ -6,7 +6,8 @@ const Option = (props) => {
         <label htmlFor={props.info}> {props.info}
             <input name="options" id={props.info} type="radio"></input>
             <button 
-                name={props.info} 
+                name={props.info}
+                className="button button--link"
                 onClick={handleDelete}
             >
                 Remove

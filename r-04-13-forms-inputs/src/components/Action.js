@@ -3,7 +3,8 @@ import React from 'react'
 //Action
 export default (props) => (
     <div>
-        <button 
+        <button
+            className="big-button"
             onClick={props.handlePick} 
             disabled = {!props.hasOptions}
         >
