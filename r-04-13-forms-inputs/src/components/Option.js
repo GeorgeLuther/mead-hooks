@@ -3,8 +3,8 @@ import React from 'react'
 const Option = (props) => {
     const handleDelete = () => props.handleDeleteOption(props.info)
     return (
-        <label htmlFor={props.info}> {props.info}
-            <input name="options" id={props.info} type="radio"></input>
+        <div className="option">
+            <p className="option__text">{props.count+'. '}{props.info}</p>
             <button 
                 name={props.info}
                 className="button button--link"
@@ -12,7 +12,7 @@ const Option = (props) => {
             >
                 Remove
             </button>
-        </label>
+        </div>
     );
 };
 
